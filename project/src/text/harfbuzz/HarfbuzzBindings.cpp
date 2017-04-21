@@ -251,9 +251,9 @@ namespace lime {
 	}
 	
 	
-	int lime_hb_buffer_serialize_format_from_string (HxString str, int len) {
+	int lime_hb_buffer_serialize_format_from_string (HxString str) {
 		
-		return hb_buffer_serialize_format_from_string (str.c_str (), len);
+		return hb_buffer_serialize_format_from_string (str.c_str (), str.length);
 		
 	}
 	
@@ -538,6 +538,14 @@ namespace lime {
 	}
 	
 	
+	value lime_hb_font_get_parent (value font) {
+		
+		hb_font_t* parent = hb_font_get_parent ((hb_font_t*)val_data (font));
+		return CFFIPointer (parent);
+		
+	}
+	
+	
 	value lime_hb_font_get_ppem (value font) {
 		
 		int xppem = 0;
@@ -596,14 +604,6 @@ namespace lime {
 	void lime_hb_font_make_immutable (value font) {
 		
 		hb_font_make_immutable ((hb_font_t*)val_data (font));
-		
-	}
-	
-	
-	value lime_hb_font_get_parent (value font) {
-		
-		hb_font_t* parent = hb_font_get_parent ((hb_font_t*)val_data (font));
-		return CFFIPointer (parent);
 		
 	}
 	
@@ -894,7 +894,7 @@ namespace lime {
 	DEFINE_PRIME1v (lime_hb_buffer_reset);
 	DEFINE_PRIME1v (lime_hb_buffer_reverse);
 	DEFINE_PRIME1v (lime_hb_buffer_reverse_clusters);
-	DEFINE_PRIME2 (lime_hb_buffer_serialize_format_from_string);
+	DEFINE_PRIME1 (lime_hb_buffer_serialize_format_from_string);
 	DEFINE_PRIME1 (lime_hb_buffer_serialize_format_to_string);
 	DEFINE_PRIME0 (lime_hb_buffer_serialize_list_formats);
 	DEFINE_PRIME2v (lime_hb_buffer_set_content_type);

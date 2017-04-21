@@ -609,7 +609,7 @@ class NativeCFFI {
 	@:cffi private static function lime_hb_buffer_reset (buffer:CFFIPointer):Void;
 	@:cffi private static function lime_hb_buffer_reverse (buffer:CFFIPointer):Void;
 	@:cffi private static function lime_hb_buffer_reverse_clusters (buffer:CFFIPointer):Void;
-	@:cffi private static function lime_hb_buffer_serialize_format_from_string (str:String, len:Int):Int;
+	@:cffi private static function lime_hb_buffer_serialize_format_from_string (str:String):Int;
 	@:cffi private static function lime_hb_buffer_serialize_format_to_string (format:Int):CFFIPointer;
 	@:cffi private static function lime_hb_buffer_serialize_list_formats ():CFFIPointer;
 	@:cffi private static function lime_hb_buffer_set_content_type (buffer:CFFIPointer, contentType:Int):Void;
@@ -639,16 +639,16 @@ class NativeCFFI {
 	@:cffi private static function lime_hb_font_create_sub_font (parent:CFFIPointer):CFFIPointer;
 	@:cffi private static function lime_hb_font_get_empty ():CFFIPointer;
 	@:cffi private static function lime_hb_font_get_face (font:CFFIPointer):CFFIPointer;
-	@:cffi private static function lime_hb_font_get_glyph_advance_for_direction (font:CFFIPointer, glyph:Int, direction:Int):CFFIPointer;
-	@:cffi private static function lime_hb_font_get_glyph_kerning_for_direction (font:CFFIPointer, firstGlyph:Int, secondGlyph:Int, direction:Int):CFFIPointer;
-	@:cffi private static function lime_hb_font_get_glyph_origin_for_direction (font:CFFIPointer, glyph:Int, direction:Int):CFFIPointer;
+	@:cffi private static function lime_hb_font_get_glyph_advance_for_direction (font:CFFIPointer, glyph:Int, direction:Int):Dynamic;
+	@:cffi private static function lime_hb_font_get_glyph_kerning_for_direction (font:CFFIPointer, firstGlyph:Int, secondGlyph:Int, direction:Int):Dynamic;
+	@:cffi private static function lime_hb_font_get_glyph_origin_for_direction (font:CFFIPointer, glyph:Int, direction:Int):Dynamic;
+	@:cffi private static function lime_hb_font_get_parent (font:CFFIPointer):CFFIPointer;
 	@:cffi private static function lime_hb_font_get_ppem (font:CFFIPointer):CFFIPointer;
 	@:cffi private static function lime_hb_font_get_scale (font:CFFIPointer):CFFIPointer;
 	@:cffi private static function lime_hb_font_glyph_from_string (font:CFFIPointer, s:String):Int;
 	@:cffi private static function lime_hb_font_glyph_to_string (font:CFFIPointer, codepoint:Int):CFFIPointer;
 	@:cffi private static function lime_hb_font_is_immutable (font:CFFIPointer):Bool;
 	@:cffi private static function lime_hb_font_make_immutable (font:CFFIPointer):Void;
-	@:cffi private static function lime_hb_font_get_parent (font:CFFIPointer):CFFIPointer;
 	@:cffi private static function lime_hb_font_set_ppem (font:CFFIPointer, xppem:Int, yppem:Int):Void;
 	@:cffi private static function lime_hb_font_set_scale (font:CFFIPointer, xScale:Int, yScale:Int):Void;
 	@:cffi private static function lime_hb_font_subtract_glyph_origin_for_direction (font:CFFIPointer, glyph:Int, direction:Int, x:Int, y:Int):Void;
@@ -671,7 +671,7 @@ class NativeCFFI {
 	@:cffi private static function lime_hb_set_is_empty (set:CFFIPointer):Bool;
 	@:cffi private static function lime_hb_set_is_equal (set:CFFIPointer, other:CFFIPointer):Bool;
 	@:cffi private static function lime_hb_set_next (set:CFFIPointer):Int;
-	@:cffi private static function lime_hb_set_next_range (set:CFFIPointer):CFFIPointer;
+	@:cffi private static function lime_hb_set_next_range (set:CFFIPointer):Dynamic;
 	@:cffi private static function lime_hb_set_set (set:CFFIPointer, other:CFFIPointer):Void;
 	@:cffi private static function lime_hb_set_subtract (set:CFFIPointer, other:CFFIPointer):Void;
 	@:cffi private static function lime_hb_set_symmetric_difference (set:CFFIPointer, other:CFFIPointer):Void;
