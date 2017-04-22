@@ -1,189 +1,146 @@
 package lime.text.harfbuzz;
 
-/**
- * ...
- * @author Joshua Granick
- */
-class HBScript
-{
 
-	public function new() 
-	{
-		
-	}
+@:enum abstract HBScript(Int) from Int to Int {
+	
+	public var COMMON = "Z".code << 24 | "y".code << 16 | "y".code << 8 | "y".code;
+	public var INHERITED = "Z".code << 24 | "i".code << 16 | "n".code << 8 | "h".code;
+	public var UNKNOWN = "Z".code << 24 | "z".code << 16 | "z".code << 8 | "z".code;
+	public var ARABIC = "A".code << 24 | "r".code << 16 | "a".code << 8 | "b".code;
+	public var ARMENIAN = "A".code << 24 | "r".code << 16 | "m".code << 8 | "n".code;
+	public var BENGALI = "B".code << 24 | "e".code << 16 | "n".code << 8 | "g".code;
+	public var CYRILLIC = "C".code << 24 | "y".code << 16 | "r".code << 8 | "l".code;
+	public var DEVANAGARI = "D".code << 24 | "e".code << 16 | "v".code << 8 | "a".code;
+	public var GEORGIAN = "G".code << 24 | "e".code << 16 | "o".code << 8 | "r".code;
+	public var GREEK = "G".code << 24 | "r".code << 16 | "e".code << 8 | "k".code;
+	public var GUJARATI = "G".code << 24 | "u".code << 16 | "j".code << 8 | "r".code;
+	public var GURMUKHI = "G".code << 24 | "u".code << 16 | "r".code << 8 | "u".code;
+	public var HANGUL = "H".code << 24 | "a".code << 16 | "n".code << 8 | "g".code;
+	public var HAN = "H".code << 24 | "a".code << 16 | "n".code << 8 | "i".code;
+	public var HEBREW = "H".code << 24 | "e".code << 16 | "b".code << 8 | "r".code;
+	public var HIRAGANA = "H".code << 24 | "i".code << 16 | "r".code << 8 | "a".code;
+	public var KANNADA = "K".code << 24 | "n".code << 16 | "d".code << 8 | "a".code;
+	public var KATAKANA = "K".code << 24 | "a".code << 16 | "n".code << 8 | "a".code;
+	public var LAO = "L".code << 24 | "a".code << 16 | "o".code << 8 | "o".code;
+	public var LATIN = "L".code << 24 | "a".code << 16 | "t".code << 8 | "n".code;
+	public var MALAYALAM = "M".code << 24 | "l".code << 16 | "y".code << 8 | "m".code;
+	public var ORIYA = "O".code << 24 | "r".code << 16 | "y".code << 8 | "a".code;
+	public var TAMIL = "T".code << 24 | "a".code << 16 | "m".code << 8 | "l".code;
+	public var TELUGU = "T".code << 24 | "e".code << 16 | "l".code << 8 | "u".code;
+	public var THAI = "T".code << 24 | "h".code << 16 | "a".code << 8 | "i".code;
+	public var TIBETAN = "T".code << 24 | "i".code << 16 | "b".code << 8 | "t".code;
+	public var BOPOMOFO = "B".code << 24 | "o".code << 16 | "p".code << 8 | "o".code;
+	public var BRAILLE = "B".code << 24 | "r".code << 16 | "a".code << 8 | "i".code;
+	public var CANADIAN_SYLLABICS = "C".code << 24 | "a".code << 16 | "n".code << 8 | "s".code;
+	public var CHEROKEE = "C".code << 24 | "h".code << 16 | "e".code << 8 | "r".code;
+	public var ETHIOPIC = "E".code << 24 | "t".code << 16 | "h".code << 8 | "i".code;
+	public var KHMER = "K".code << 24 | "h".code << 16 | "m".code << 8 | "r".code;
+	public var MONGOLIAN = "M".code << 24 | "o".code << 16 | "n".code << 8 | "g".code;
+	public var MYANMAR = "M".code << 24 | "y".code << 16 | "m".code << 8 | "r".code;
+	public var OGHAM = "O".code << 24 | "g".code << 16 | "a".code << 8 | "m".code;
+	public var RUNIC = "R".code << 24 | "u".code << 16 | "n".code << 8 | "r".code;
+	public var SINHALA = "S".code << 24 | "i".code << 16 | "n".code << 8 | "h".code;
+	public var SYRIAC = "S".code << 24 | "y".code << 16 | "r".code << 8 | "c".code;
+	public var THAANA = "T".code << 24 | "h".code << 16 | "a".code << 8 | "a".code;
+	public var YI = "Y".code << 24 | "i".code << 16 | "i".code << 8 | "i".code;
+	public var DESERET = "D".code << 24 | "s".code << 16 | "r".code << 8 | "t".code;
+	public var GOTHIC = "G".code << 24 | "o".code << 16 | "t".code << 8 | "h".code;
+	public var OLD_ITALIC = "I".code << 24 | "t".code << 16 | "a".code << 8 | "l".code;
+	public var BUHID = "B".code << 24 | "u".code << 16 | "h".code << 8 | "d".code;
+	public var HANUNOO = "H".code << 24 | "a".code << 16 | "n".code << 8 | "o".code;
+	public var TAGALOG = "T".code << 24 | "g".code << 16 | "l".code << 8 | "g".code;
+	public var TAGBANWA = "T".code << 24 | "a".code << 16 | "g".code << 8 | "b".code;
+	public var CYPRIOT = "C".code << 24 | "p".code << 16 | "r".code << 8 | "t".code;
+	public var LIMBU = "L".code << 24 | "i".code << 16 | "m".code << 8 | "b".code;
+	public var LINEAR_B = "L".code << 24 | "i".code << 16 | "n".code << 8 | "b".code;
+	public var OSMANYA = "O".code << 24 | "s".code << 16 | "m".code << 8 | "a".code;
+	public var SHAVIAN = "S".code << 24 | "h".code << 16 | "a".code << 8 | "w".code;
+	public var TAI_LE = "T".code << 24 | "a".code << 16 | "l".code << 8 | "e".code;
+	public var UGARITIC = "U".code << 24 | "g".code << 16 | "a".code << 8 | "r".code;
+	public var BUGINESE = "B".code << 24 | "u".code << 16 | "g".code << 8 | "i".code;
+	public var COPTIC = "C".code << 24 | "o".code << 16 | "p".code << 8 | "t".code;
+	public var GLAGOLITIC = "G".code << 24 | "l".code << 16 | "a".code << 8 | "g".code;
+	public var KHAROSHTHI = "K".code << 24 | "h".code << 16 | "a".code << 8 | "r".code;
+	public var NEW_TAI_LUE = "T".code << 24 | "a".code << 16 | "l".code << 8 | "u".code;
+	public var OLD_PERSIAN = "X".code << 24 | "p".code << 16 | "e".code << 8 | "o".code;
+	public var SYLOTI_NAGRI = "S".code << 24 | "y".code << 16 | "l".code << 8 | "o".code;
+	public var TIFINAGH = "T".code << 24 | "f".code << 16 | "n".code << 8 | "g".code;
+	public var BALINESE = "B".code << 24 | "a".code << 16 | "l".code << 8 | "i".code;
+	public var CUNEIFORM = "X".code << 24 | "s".code << 16 | "u".code << 8 | "x".code;
+	public var NKO = "N".code << 24 | "k".code << 16 | "o".code << 8 | "o".code;
+	public var PHAGS_PA = "P".code << 24 | "h".code << 16 | "a".code << 8 | "g".code;
+	public var PHOENICIAN = "P".code << 24 | "h".code << 16 | "n".code << 8 | "x".code;
+	public var CARIAN = "C".code << 24 | "a".code << 16 | "r".code << 8 | "i".code;
+	public var CHAM = "C".code << 24 | "h".code << 16 | "a".code << 8 | "m".code;
+	public var KAYAH_LI = "K".code << 24 | "a".code << 16 | "l".code << 8 | "i".code;
+	public var LEPCHA = "L".code << 24 | "e".code << 16 | "p".code << 8 | "c".code;
+	public var LYCIAN = "L".code << 24 | "y".code << 16 | "c".code << 8 | "i".code;
+	public var LYDIAN = "L".code << 24 | "y".code << 16 | "d".code << 8 | "i".code;
+	public var OL_CHIKI = "O".code << 24 | "l".code << 16 | "c".code << 8 | "k".code;
+	public var REJANG = "R".code << 24 | "j".code << 16 | "n".code << 8 | "g".code;
+	public var SAURASHTRA = "S".code << 24 | "a".code << 16 | "u".code << 8 | "r".code;
+	public var SUNDANESE = "S".code << 24 | "u".code << 16 | "n".code << 8 | "d".code;
+	public var VAI = "V".code << 24 | "a".code << 16 | "i".code << 8 | "i".code;
+	public var AVESTAN = "A".code << 24 | "v".code << 16 | "s".code << 8 | "t".code;
+	public var BAMUM = "B".code << 24 | "a".code << 16 | "m".code << 8 | "u".code;
+	public var EGYPTIAN_HIEROGLYPHS = "E".code << 24 | "g".code << 16 | "y".code << 8 | "p".code;
+	public var IMPERIAL_ARAMAIC = "A".code << 24 | "r".code << 16 | "m".code << 8 | "i".code;
+	public var INSCRIPTIONAL_PAHLAVI = "P".code << 24 | "h".code << 16 | "l".code << 8 | "i".code;
+	public var INSCRIPTIONAL_PARTHIAN = "P".code << 24 | "r".code << 16 | "t".code << 8 | "i".code;
+	public var JAVANESE = "J".code << 24 | "a".code << 16 | "v".code << 8 | "a".code;
+	public var KAITHI = "K".code << 24 | "t".code << 16 | "h".code << 8 | "i".code;
+	public var LISU = "L".code << 24 | "i".code << 16 | "s".code << 8 | "u".code;
+	public var MEETEI_MAYEK = "M".code << 24 | "t".code << 16 | "e".code << 8 | "i".code;
+	public var OLD_SOUTH_ARABIAN = "S".code << 24 | "a".code << 16 | "r".code << 8 | "b".code;
+	public var OLD_TURKIC = "O".code << 24 | "r".code << 16 | "k".code << 8 | "h".code;
+	public var SAMARITAN = "S".code << 24 | "a".code << 16 | "m".code << 8 | "r".code;
+	public var TAI_THAM = "L".code << 24 | "a".code << 16 | "n".code << 8 | "a".code;
+	public var TAI_VIET = "T".code << 24 | "a".code << 16 | "v".code << 8 | "t".code;
+	public var BATAK = "B".code << 24 | "a".code << 16 | "t".code << 8 | "k".code;
+	public var BRAHMI = "B".code << 24 | "r".code << 16 | "a".code << 8 | "h".code;
+	public var MANDAIC = "M".code << 24 | "a".code << 16 | "n".code << 8 | "d".code;
+	public var CHAKMA = "C".code << 24 | "a".code << 16 | "k".code << 8 | "m".code;
+	public var MEROITIC_CURSIVE = "M".code << 24 | "e".code << 16 | "r".code << 8 | "c".code;
+	public var MEROITIC_HIEROGLYPHS = "M".code << 24 | "e".code << 16 | "r".code << 8 | "o".code;
+	public var MIAO = "P".code << 24 | "l".code << 16 | "r".code << 8 | "d".code;
+	public var SHARADA = "S".code << 24 | "h".code << 16 | "r".code << 8 | "d".code;
+	public var SORA_SOMPENG = "S".code << 24 | "o".code << 16 | "r".code << 8 | "a".code;
+	public var TAKRI = "T".code << 24 | "a".code << 16 | "k".code << 8 | "r".code;
+	public var BASSA_VAH = "B".code << 24 | "a".code << 16 | "s".code << 8 | "s".code;
+	public var CAUCASIAN_ALBANIAN = "A".code << 24 | "g".code << 16 | "h".code << 8 | "b".code;
+	public var DUPLOYAN = "D".code << 24 | "u".code << 16 | "p".code << 8 | "l".code;
+	public var ELBASAN = "E".code << 24 | "l".code << 16 | "b".code << 8 | "a".code;
+	public var GRANTHA = "G".code << 24 | "r".code << 16 | "a".code << 8 | "n".code;
+	public var KHOJKI = "K".code << 24 | "h".code << 16 | "o".code << 8 | "j".code;
+	public var KHUDAWADI = "S".code << 24 | "i".code << 16 | "n".code << 8 | "d".code;
+	public var LINEAR_A = "L".code << 24 | "i".code << 16 | "n".code << 8 | "a".code;
+	public var MAHAJANI = "M".code << 24 | "a".code << 16 | "h".code << 8 | "j".code;
+	public var MANICHAEAN = "M".code << 24 | "a".code << 16 | "n".code << 8 | "i".code;
+	public var MENDE_KIKAKUI = "M".code << 24 | "e".code << 16 | "n".code << 8 | "d".code;
+	public var MODI = "M".code << 24 | "o".code << 16 | "d".code << 8 | "i".code;
+	public var MRO = "M".code << 24 | "r".code << 16 | "o".code << 8 | "o".code;
+	public var NABATAEAN = "N".code << 24 | "b".code << 16 | "a".code << 8 | "t".code;
+	public var OLD_NORTH_ARABIAN = "N".code << 24 | "a".code << 16 | "r".code << 8 | "b".code;
+	public var OLD_PERMIC = "P".code << 24 | "e".code << 16 | "r".code << 8 | "m".code;
+	public var PAHAWH_HMONG = "H".code << 24 | "m".code << 16 | "n".code << 8 | "g".code;
+	public var PALMYRENE = "P".code << 24 | "a".code << 16 | "l".code << 8 | "m".code;
+	public var PAU_CIN_HAU = "P".code << 24 | "a".code << 16 | "u".code << 8 | "c".code;
+	public var PSALTER_PAHLAVI = "P".code << 24 | "h".code << 16 | "l".code << 8 | "p".code;
+	public var SIDDHAM = "S".code << 24 | "i".code << 16 | "d".code << 8 | "d".code;
+	public var TIRHUTA = "T".code << 24 | "i".code << 16 | "r".code << 8 | "h".code;
+	public var WARANG_CITI = "W".code << 24 | "a".code << 16 | "r".code << 8 | "a".code;
+	public var AHOM = "A".code << 24 | "h".code << 16 | "o".code << 8 | "m".code;
+	public var ANATOLIAN_HIEROGLYPHS = "H".code << 24 | "l".code << 16 | "u".code << 8 | "w".code;
+	public var HATRAN = "H".code << 24 | "a".code << 16 | "t".code << 8 | "r".code;
+	public var MULTANI = "M".code << 24 | "u".code << 16 | "l".code << 8 | "t".code;
+	public var OLD_HUNGARIAN = "H".code << 24 | "u".code << 16 | "n".code << 8 | "g".code;
+	public var SIGNWRITING = "S".code << 24 | "g".code << 16 | "n".code << 8 | "w".code;
+	public var ADLAM = "A".code << 24 | "d".code << 16 | "l".code << 8 | "m".code;
+	public var BHAIKSUKI = "B".code << 24 | "h".code << 16 | "k".code << 8 | "s".code;
+	public var MARCHEN = "M".code << 24 | "a".code << 16 | "r".code << 8 | "c".code;
+	public var OSAGE = "O".code << 24 | "s".code << 16 | "g".code << 8 | "e".code;
+	public var TANGUT = "T".code << 24 | "a".code << 16 | "n".code << 8 | "g".code;
+	public var NEWA = "N".code << 24 | "e".code << 16 | "w".code << 8 | "a".code;
+	public var INVALID = 0;
 	
 }
-
-
-*1.1*/ HB_SCRIPT_COMMON			= HB_TAG ('Z','y','y','y'),
-  /*1.1*/ HB_SCRIPT_INHERITED			= HB_TAG ('Z','i','n','h'),
-  /*5.0*/ HB_SCRIPT_UNKNOWN			= HB_TAG ('Z','z','z','z'),
-
-  /*1.1*/ HB_SCRIPT_ARABIC			= HB_TAG ('A','r','a','b'),
-  /*1.1*/ HB_SCRIPT_ARMENIAN			= HB_TAG ('A','r','m','n'),
-  /*1.1*/ HB_SCRIPT_BENGALI			= HB_TAG ('B','e','n','g'),
-  /*1.1*/ HB_SCRIPT_CYRILLIC			= HB_TAG ('C','y','r','l'),
-  /*1.1*/ HB_SCRIPT_DEVANAGARI			= HB_TAG ('D','e','v','a'),
-  /*1.1*/ HB_SCRIPT_GEORGIAN			= HB_TAG ('G','e','o','r'),
-  /*1.1*/ HB_SCRIPT_GREEK			= HB_TAG ('G','r','e','k'),
-  /*1.1*/ HB_SCRIPT_GUJARATI			= HB_TAG ('G','u','j','r'),
-  /*1.1*/ HB_SCRIPT_GURMUKHI			= HB_TAG ('G','u','r','u'),
-  /*1.1*/ HB_SCRIPT_HANGUL			= HB_TAG ('H','a','n','g'),
-  /*1.1*/ HB_SCRIPT_HAN				= HB_TAG ('H','a','n','i'),
-  /*1.1*/ HB_SCRIPT_HEBREW			= HB_TAG ('H','e','b','r'),
-  /*1.1*/ HB_SCRIPT_HIRAGANA			= HB_TAG ('H','i','r','a'),
-  /*1.1*/ HB_SCRIPT_KANNADA			= HB_TAG ('K','n','d','a'),
-  /*1.1*/ HB_SCRIPT_KATAKANA			= HB_TAG ('K','a','n','a'),
-  /*1.1*/ HB_SCRIPT_LAO				= HB_TAG ('L','a','o','o'),
-  /*1.1*/ HB_SCRIPT_LATIN			= HB_TAG ('L','a','t','n'),
-  /*1.1*/ HB_SCRIPT_MALAYALAM			= HB_TAG ('M','l','y','m'),
-  /*1.1*/ HB_SCRIPT_ORIYA			= HB_TAG ('O','r','y','a'),
-  /*1.1*/ HB_SCRIPT_TAMIL			= HB_TAG ('T','a','m','l'),
-  /*1.1*/ HB_SCRIPT_TELUGU			= HB_TAG ('T','e','l','u'),
-  /*1.1*/ HB_SCRIPT_THAI			= HB_TAG ('T','h','a','i'),
-
-  /*2.0*/ HB_SCRIPT_TIBETAN			= HB_TAG ('T','i','b','t'),
-
-  /*3.0*/ HB_SCRIPT_BOPOMOFO			= HB_TAG ('B','o','p','o'),
-  /*3.0*/ HB_SCRIPT_BRAILLE			= HB_TAG ('B','r','a','i'),
-  /*3.0*/ HB_SCRIPT_CANADIAN_SYLLABICS		= HB_TAG ('C','a','n','s'),
-  /*3.0*/ HB_SCRIPT_CHEROKEE			= HB_TAG ('C','h','e','r'),
-  /*3.0*/ HB_SCRIPT_ETHIOPIC			= HB_TAG ('E','t','h','i'),
-  /*3.0*/ HB_SCRIPT_KHMER			= HB_TAG ('K','h','m','r'),
-  /*3.0*/ HB_SCRIPT_MONGOLIAN			= HB_TAG ('M','o','n','g'),
-  /*3.0*/ HB_SCRIPT_MYANMAR			= HB_TAG ('M','y','m','r'),
-  /*3.0*/ HB_SCRIPT_OGHAM			= HB_TAG ('O','g','a','m'),
-  /*3.0*/ HB_SCRIPT_RUNIC			= HB_TAG ('R','u','n','r'),
-  /*3.0*/ HB_SCRIPT_SINHALA			= HB_TAG ('S','i','n','h'),
-  /*3.0*/ HB_SCRIPT_SYRIAC			= HB_TAG ('S','y','r','c'),
-  /*3.0*/ HB_SCRIPT_THAANA			= HB_TAG ('T','h','a','a'),
-  /*3.0*/ HB_SCRIPT_YI				= HB_TAG ('Y','i','i','i'),
-
-  /*3.1*/ HB_SCRIPT_DESERET			= HB_TAG ('D','s','r','t'),
-  /*3.1*/ HB_SCRIPT_GOTHIC			= HB_TAG ('G','o','t','h'),
-  /*3.1*/ HB_SCRIPT_OLD_ITALIC			= HB_TAG ('I','t','a','l'),
-
-  /*3.2*/ HB_SCRIPT_BUHID			= HB_TAG ('B','u','h','d'),
-  /*3.2*/ HB_SCRIPT_HANUNOO			= HB_TAG ('H','a','n','o'),
-  /*3.2*/ HB_SCRIPT_TAGALOG			= HB_TAG ('T','g','l','g'),
-  /*3.2*/ HB_SCRIPT_TAGBANWA			= HB_TAG ('T','a','g','b'),
-
-  /*4.0*/ HB_SCRIPT_CYPRIOT			= HB_TAG ('C','p','r','t'),
-  /*4.0*/ HB_SCRIPT_LIMBU			= HB_TAG ('L','i','m','b'),
-  /*4.0*/ HB_SCRIPT_LINEAR_B			= HB_TAG ('L','i','n','b'),
-  /*4.0*/ HB_SCRIPT_OSMANYA			= HB_TAG ('O','s','m','a'),
-  /*4.0*/ HB_SCRIPT_SHAVIAN			= HB_TAG ('S','h','a','w'),
-  /*4.0*/ HB_SCRIPT_TAI_LE			= HB_TAG ('T','a','l','e'),
-  /*4.0*/ HB_SCRIPT_UGARITIC			= HB_TAG ('U','g','a','r'),
-
-  /*4.1*/ HB_SCRIPT_BUGINESE			= HB_TAG ('B','u','g','i'),
-  /*4.1*/ HB_SCRIPT_COPTIC			= HB_TAG ('C','o','p','t'),
-  /*4.1*/ HB_SCRIPT_GLAGOLITIC			= HB_TAG ('G','l','a','g'),
-  /*4.1*/ HB_SCRIPT_KHAROSHTHI			= HB_TAG ('K','h','a','r'),
-  /*4.1*/ HB_SCRIPT_NEW_TAI_LUE			= HB_TAG ('T','a','l','u'),
-  /*4.1*/ HB_SCRIPT_OLD_PERSIAN			= HB_TAG ('X','p','e','o'),
-  /*4.1*/ HB_SCRIPT_SYLOTI_NAGRI		= HB_TAG ('S','y','l','o'),
-  /*4.1*/ HB_SCRIPT_TIFINAGH			= HB_TAG ('T','f','n','g'),
-
-  /*5.0*/ HB_SCRIPT_BALINESE			= HB_TAG ('B','a','l','i'),
-  /*5.0*/ HB_SCRIPT_CUNEIFORM			= HB_TAG ('X','s','u','x'),
-  /*5.0*/ HB_SCRIPT_NKO				= HB_TAG ('N','k','o','o'),
-  /*5.0*/ HB_SCRIPT_PHAGS_PA			= HB_TAG ('P','h','a','g'),
-  /*5.0*/ HB_SCRIPT_PHOENICIAN			= HB_TAG ('P','h','n','x'),
-
-  /*5.1*/ HB_SCRIPT_CARIAN			= HB_TAG ('C','a','r','i'),
-  /*5.1*/ HB_SCRIPT_CHAM			= HB_TAG ('C','h','a','m'),
-  /*5.1*/ HB_SCRIPT_KAYAH_LI			= HB_TAG ('K','a','l','i'),
-  /*5.1*/ HB_SCRIPT_LEPCHA			= HB_TAG ('L','e','p','c'),
-  /*5.1*/ HB_SCRIPT_LYCIAN			= HB_TAG ('L','y','c','i'),
-  /*5.1*/ HB_SCRIPT_LYDIAN			= HB_TAG ('L','y','d','i'),
-  /*5.1*/ HB_SCRIPT_OL_CHIKI			= HB_TAG ('O','l','c','k'),
-  /*5.1*/ HB_SCRIPT_REJANG			= HB_TAG ('R','j','n','g'),
-  /*5.1*/ HB_SCRIPT_SAURASHTRA			= HB_TAG ('S','a','u','r'),
-  /*5.1*/ HB_SCRIPT_SUNDANESE			= HB_TAG ('S','u','n','d'),
-  /*5.1*/ HB_SCRIPT_VAI				= HB_TAG ('V','a','i','i'),
-
-  /*5.2*/ HB_SCRIPT_AVESTAN			= HB_TAG ('A','v','s','t'),
-  /*5.2*/ HB_SCRIPT_BAMUM			= HB_TAG ('B','a','m','u'),
-  /*5.2*/ HB_SCRIPT_EGYPTIAN_HIEROGLYPHS	= HB_TAG ('E','g','y','p'),
-  /*5.2*/ HB_SCRIPT_IMPERIAL_ARAMAIC		= HB_TAG ('A','r','m','i'),
-  /*5.2*/ HB_SCRIPT_INSCRIPTIONAL_PAHLAVI	= HB_TAG ('P','h','l','i'),
-  /*5.2*/ HB_SCRIPT_INSCRIPTIONAL_PARTHIAN	= HB_TAG ('P','r','t','i'),
-  /*5.2*/ HB_SCRIPT_JAVANESE			= HB_TAG ('J','a','v','a'),
-  /*5.2*/ HB_SCRIPT_KAITHI			= HB_TAG ('K','t','h','i'),
-  /*5.2*/ HB_SCRIPT_LISU			= HB_TAG ('L','i','s','u'),
-  /*5.2*/ HB_SCRIPT_MEETEI_MAYEK		= HB_TAG ('M','t','e','i'),
-  /*5.2*/ HB_SCRIPT_OLD_SOUTH_ARABIAN		= HB_TAG ('S','a','r','b'),
-  /*5.2*/ HB_SCRIPT_OLD_TURKIC			= HB_TAG ('O','r','k','h'),
-  /*5.2*/ HB_SCRIPT_SAMARITAN			= HB_TAG ('S','a','m','r'),
-  /*5.2*/ HB_SCRIPT_TAI_THAM			= HB_TAG ('L','a','n','a'),
-  /*5.2*/ HB_SCRIPT_TAI_VIET			= HB_TAG ('T','a','v','t'),
-
-  /*6.0*/ HB_SCRIPT_BATAK			= HB_TAG ('B','a','t','k'),
-  /*6.0*/ HB_SCRIPT_BRAHMI			= HB_TAG ('B','r','a','h'),
-  /*6.0*/ HB_SCRIPT_MANDAIC			= HB_TAG ('M','a','n','d'),
-
-  /*6.1*/ HB_SCRIPT_CHAKMA			= HB_TAG ('C','a','k','m'),
-  /*6.1*/ HB_SCRIPT_MEROITIC_CURSIVE		= HB_TAG ('M','e','r','c'),
-  /*6.1*/ HB_SCRIPT_MEROITIC_HIEROGLYPHS	= HB_TAG ('M','e','r','o'),
-  /*6.1*/ HB_SCRIPT_MIAO			= HB_TAG ('P','l','r','d'),
-  /*6.1*/ HB_SCRIPT_SHARADA			= HB_TAG ('S','h','r','d'),
-  /*6.1*/ HB_SCRIPT_SORA_SOMPENG		= HB_TAG ('S','o','r','a'),
-  /*6.1*/ HB_SCRIPT_TAKRI			= HB_TAG ('T','a','k','r'),
-
-  /*
-   * Since: 0.9.30
-   */
-  /*7.0*/ HB_SCRIPT_BASSA_VAH			= HB_TAG ('B','a','s','s'),
-  /*7.0*/ HB_SCRIPT_CAUCASIAN_ALBANIAN		= HB_TAG ('A','g','h','b'),
-  /*7.0*/ HB_SCRIPT_DUPLOYAN			= HB_TAG ('D','u','p','l'),
-  /*7.0*/ HB_SCRIPT_ELBASAN			= HB_TAG ('E','l','b','a'),
-  /*7.0*/ HB_SCRIPT_GRANTHA			= HB_TAG ('G','r','a','n'),
-  /*7.0*/ HB_SCRIPT_KHOJKI			= HB_TAG ('K','h','o','j'),
-  /*7.0*/ HB_SCRIPT_KHUDAWADI			= HB_TAG ('S','i','n','d'),
-  /*7.0*/ HB_SCRIPT_LINEAR_A			= HB_TAG ('L','i','n','a'),
-  /*7.0*/ HB_SCRIPT_MAHAJANI			= HB_TAG ('M','a','h','j'),
-  /*7.0*/ HB_SCRIPT_MANICHAEAN			= HB_TAG ('M','a','n','i'),
-  /*7.0*/ HB_SCRIPT_MENDE_KIKAKUI		= HB_TAG ('M','e','n','d'),
-  /*7.0*/ HB_SCRIPT_MODI			= HB_TAG ('M','o','d','i'),
-  /*7.0*/ HB_SCRIPT_MRO				= HB_TAG ('M','r','o','o'),
-  /*7.0*/ HB_SCRIPT_NABATAEAN			= HB_TAG ('N','b','a','t'),
-  /*7.0*/ HB_SCRIPT_OLD_NORTH_ARABIAN		= HB_TAG ('N','a','r','b'),
-  /*7.0*/ HB_SCRIPT_OLD_PERMIC			= HB_TAG ('P','e','r','m'),
-  /*7.0*/ HB_SCRIPT_PAHAWH_HMONG		= HB_TAG ('H','m','n','g'),
-  /*7.0*/ HB_SCRIPT_PALMYRENE			= HB_TAG ('P','a','l','m'),
-  /*7.0*/ HB_SCRIPT_PAU_CIN_HAU			= HB_TAG ('P','a','u','c'),
-  /*7.0*/ HB_SCRIPT_PSALTER_PAHLAVI		= HB_TAG ('P','h','l','p'),
-  /*7.0*/ HB_SCRIPT_SIDDHAM			= HB_TAG ('S','i','d','d'),
-  /*7.0*/ HB_SCRIPT_TIRHUTA			= HB_TAG ('T','i','r','h'),
-  /*7.0*/ HB_SCRIPT_WARANG_CITI			= HB_TAG ('W','a','r','a'),
-
-  /*8.0*/ HB_SCRIPT_AHOM			= HB_TAG ('A','h','o','m'),
-  /*8.0*/ HB_SCRIPT_ANATOLIAN_HIEROGLYPHS	= HB_TAG ('H','l','u','w'),
-  /*8.0*/ HB_SCRIPT_HATRAN			= HB_TAG ('H','a','t','r'),
-  /*8.0*/ HB_SCRIPT_MULTANI			= HB_TAG ('M','u','l','t'),
-  /*8.0*/ HB_SCRIPT_OLD_HUNGARIAN		= HB_TAG ('H','u','n','g'),
-  /*8.0*/ HB_SCRIPT_SIGNWRITING			= HB_TAG ('S','g','n','w'),
-
-  /*
-   * Since 1.3.0
-   */
-  /*9.0*/ HB_SCRIPT_ADLAM			= HB_TAG ('A','d','l','m'),
-  /*9.0*/ HB_SCRIPT_BHAIKSUKI			= HB_TAG ('B','h','k','s'),
-  /*9.0*/ HB_SCRIPT_MARCHEN			= HB_TAG ('M','a','r','c'),
-  /*9.0*/ HB_SCRIPT_OSAGE			= HB_TAG ('O','s','g','e'),
-  /*9.0*/ HB_SCRIPT_TANGUT			= HB_TAG ('T','a','n','g'),
-  /*9.0*/ HB_SCRIPT_NEWA			= HB_TAG ('N','e','w','a'),
-
-  /* No script set. */
-  HB_SCRIPT_INVALID				= HB_TAG_NONE,
-
-  /* Dummy values to ensure any hb_tag_t value can be passed/stored as hb_script_t
-   * without risking undefined behavior.  Include both a signed and unsigned max,
-   * since technically enums are int, and indeed, hb_script_t ends up being signed.
-   * See this thread for technicalities:
-   *
-   *   http://lists.freedesktop.org/archives/harfbuzz/2014-March/004150.html
-   */
-  _HB_SCRIPT_MAX_VALUE				= HB_TAG_MAX, /*< skip >*/
-  _HB_SCRIPT_MAX_VALUE_SIGNED			= HB_TAG_MAX_SIGNED /*< skip >*/

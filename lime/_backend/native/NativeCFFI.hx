@@ -652,6 +652,12 @@ class NativeCFFI {
 	@:cffi private static function lime_hb_font_set_ppem (font:CFFIPointer, xppem:Int, yppem:Int):Void;
 	@:cffi private static function lime_hb_font_set_scale (font:CFFIPointer, xScale:Int, yScale:Int):Void;
 	@:cffi private static function lime_hb_font_subtract_glyph_origin_for_direction (font:CFFIPointer, glyph:Int, direction:Int, x:Int, y:Int):Void;
+	@:cffi private static function lime_hb_ft_font_create_referenced (font:Dynamic):CFFIPointer;
+	@:cffi private static function lime_hb_ft_font_get_load_flags (font:CFFIPointer):Int;
+	@:cffi private static function lime_hb_ft_font_set_load_flags (font:CFFIPointer, loadFlags:Int):Void;
+	@:cffi private static function lime_hb_language_from_string (str:String):CFFIPointer;
+	@:cffi private static function lime_hb_language_get_default ():CFFIPointer;
+	@:cffi private static function lime_hb_language_to_string (language:CFFIPointer):String;
 	@:cffi private static function lime_hb_segment_properties_equal (a:CFFIPointer, b:CFFIPointer):Bool;
 	@:cffi private static function lime_hb_segment_properties_hash (p:CFFIPointer):Int;
 	@:cffi private static function lime_hb_set_add (set:CFFIPointer, codepoint:Int):Void;

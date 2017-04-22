@@ -11,7 +11,7 @@ import lime.system.CFFIPointer;
 abstract HBFont(CFFIPointer) from CFFIPointer to CFFIPointer {
 	
 	
-	public static var empty (get, never):HBBlob;
+	public static var empty (get, never):HBFont;
 	
 	public var face (get, never):HBFace;
 	public var immutable (get, never):Bool;
@@ -31,12 +31,10 @@ abstract HBFont(CFFIPointer) from CFFIPointer to CFFIPointer {
 	}
 	
 	
-	public function addGlyphOriginForDirection (glyph:Int, direction:HBDirection, x:Int, y:Int):HBFont {
+	public function addGlyphOriginForDirection (glyph:Int, direction:HBDirection, x:Int, y:Int):Void {
 		
 		#if (lime_cffi && lime_harfbuzz && !macro)
-		return NativeCFFI.lime_hb_font_add_glyph_origin_for_direction (this, glyph, direction, x, y);
-		#else
-		return null;
+		NativeCFFI.lime_hb_font_add_glyph_origin_for_direction (this, glyph, direction, x, y);
 		#end
 		
 	}
@@ -67,18 +65,7 @@ abstract HBFont(CFFIPointer) from CFFIPointer to CFFIPointer {
 	public function getGlyphKerningForDirection (glyph:Int, firstGlyph:Int, secondGlyph:Int, direction:HBDirection):Vector2 {
 		
 		#if (lime_cffi && lime_harfbuzz && !macro)
-		return NativeCFFI.lime_hb_font_get_glyph_advance_for_direction (this, firstGlyph, secondGlyph, direction);
-		#else
-		return null;
-		#end
-		
-	}
-	
-	
-	public function getGlyphOriginForDirection (glyph:Int, direction:HBDirection):Vector2 {
-		
-		#if (lime_cffi && lime_harfbuzz && !macro)
-		return NativeCFFI.lime_hb_font_get_glyph_origin_for_direction (this, glyph, direction);
+		return NativeCFFI.lime_hb_font_get_glyph_kerning_for_direction (this, firstGlyph, secondGlyph, direction);
 		#else
 		return null;
 		#end
@@ -204,7 +191,7 @@ abstract HBFont(CFFIPointer) from CFFIPointer to CFFIPointer {
 	private inline function set_ppem (value:Vector2):Vector2 {
 		
 		#if (lime_cffi && lime_harfbuzz && !macro)
-		NativeCFFI.lime_hb_font_set_ppem (this, value);
+		NativeCFFI.lime_hb_font_set_ppem (this, Std.int (value.x), Std.int (value.y));
 		#end
 		return value;
 		
@@ -225,7 +212,7 @@ abstract HBFont(CFFIPointer) from CFFIPointer to CFFIPointer {
 	private inline function set_scale (value:Vector2):Vector2 {
 		
 		#if (lime_cffi && lime_harfbuzz && !macro)
-		NativeCFFI.lime_hb_font_set_scale (this, value);
+		NativeCFFI.lime_hb_font_set_scale (this, Std.int (value.x), Std.int (value.y));
 		#end
 		return value;
 		

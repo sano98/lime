@@ -3,10 +3,10 @@ package lime.text.harfbuzz;
 
 @:enum abstract HBDirection(Int) from Int to Int {
 	
-	public var HB_DIRECTION_INVALID = 0;
-	public var HB_DIRECTION_LTR = 4;
-	public var HB_DIRECTION_RTL = 5;
-	public var HB_DIRECTION_TTB = 6;
-	public var HB_DIRECTION_BTT = 7;
+	public var INVALID = 0;
+	public var LTR = 4;
+	public var RTL = 5;
+	public var TTB = 6;
+	public var BTT = 7;
 	
 }

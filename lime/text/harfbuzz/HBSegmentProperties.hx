@@ -13,6 +13,6 @@ class HBSegmentProperties
 	}
 	
 	
-	@:cffi private static function lime_hb_segment_properties_equal (a:CFFIPointer, b:CFFIPointer):Bool;
-	@:cffi private static function lime_hb_segment_properties_hash (p:CFFIPointer):Int;
+	//@:cffi private static function lime_hb_segment_properties_equal (a:CFFIPointer, b:CFFIPointer):Bool;
+	//@:cffi private static function lime_hb_segment_properties_hash (p:CFFIPointer):Int;
 }

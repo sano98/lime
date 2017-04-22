@@ -1,7 +1,11 @@
 #include <hx/CFFIPrime.h>
 #include <math/Vector2.h>
 #include <system/CFFIPointer.h>
+#include <text/Font.h>
+#include <ft2build.h>
+#include FT_FREETYPE_H
 #include <hb.h>
+#include <hb-ft.h>
 #include <map>
 
 
@@ -629,6 +633,54 @@ namespace lime {
 	}
 	
 	
+	value lime_hb_ft_font_create_referenced (value font) {
+		
+		Font* _font = (Font*)val_data (font);
+		hb_font_t* __font = hb_ft_font_create_referenced ((FT_Face)_font->face);
+		return CFFIPointer (__font);
+		
+	}
+	
+	
+	int lime_hb_ft_font_get_load_flags (value font) {
+		
+		return hb_ft_font_get_load_flags ((hb_font_t*)val_data (font));
+		
+	}
+	
+	
+	void lime_hb_ft_font_set_load_flags (value font, int loadFlags) {
+		
+		hb_ft_font_set_load_flags ((hb_font_t*)val_data (font), loadFlags);
+		
+	}
+	
+	
+	value lime_hb_language_from_string (HxString str) {
+		
+		hb_language_t language = hb_language_from_string (str.c_str (), str.length);
+		return CFFIPointer (&language);
+		
+	}
+	
+	
+	value lime_hb_language_get_default () {
+		
+		hb_language_t language = hb_language_get_default ();
+		return CFFIPointer (&language);
+		
+	}
+	
+	
+	value lime_hb_language_to_string (value language) {
+		
+		hb_language_t* _language = (hb_language_t*)val_data (language);
+		const char* result = hb_language_to_string (*_language);
+		return alloc_string (result);
+		
+	}
+	
+	
 	bool lime_hb_segment_properties_equal (value a, value b) {
 		
 		return hb_segment_properties_equal ((hb_segment_properties_t*)val_data (a), (hb_segment_properties_t*)val_data (b));
@@ -854,6 +906,12 @@ namespace lime {
 	//hb_font_get_user_data
 	//hb_font_reference
 	//hb_font_set_user_data
+	//hb_ft_face_create
+	//hb_ft_face_create_cached
+	//hb_ft_face_create_referenced
+	//hb_ft_font_create
+	//hb_ft_font_get_face
+	//hb_ft_font_set_funcs
 	//hb_set_destroy
 	//hb_set_get_user_data
 	//hb_set_reference
@@ -937,6 +995,12 @@ namespace lime {
 	DEFINE_PRIME3v (lime_hb_font_set_ppem);
 	DEFINE_PRIME3v (lime_hb_font_set_scale);
 	DEFINE_PRIME5v (lime_hb_font_subtract_glyph_origin_for_direction);
+	DEFINE_PRIME1 (lime_hb_ft_font_create_referenced);
+	DEFINE_PRIME1 (lime_hb_ft_font_get_load_flags);
+	DEFINE_PRIME2v (lime_hb_ft_font_set_load_flags);
+	DEFINE_PRIME1 (lime_hb_language_from_string);
+	DEFINE_PRIME0 (lime_hb_language_get_default);
+	DEFINE_PRIME1 (lime_hb_language_to_string);
 	DEFINE_PRIME2 (lime_hb_segment_properties_equal);
 	DEFINE_PRIME1v (lime_hb_segment_properties_hash);
 	DEFINE_PRIME2v (lime_hb_set_add);

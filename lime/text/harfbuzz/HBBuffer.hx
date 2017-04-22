@@ -130,7 +130,7 @@ abstract HBBuffer(CFFIPointer) from CFFIPointer to CFFIPointer {
 	public function preallocate (size:Int):Bool {
 		
 		#if (lime_cffi && lime_harfbuzz && !macro)
-		NativeCFFI.lime_hb_buffer_preallocate (this, size);
+		return NativeCFFI.lime_hb_buffer_preallocate (this, size);
 		#else
 		return false;
 		#end
@@ -170,6 +170,17 @@ abstract HBBuffer(CFFIPointer) from CFFIPointer to CFFIPointer {
 	// Get & Set Methods
 	
 	
+	
+	
+	private inline function get_allocationSuccessful ():Bool {
+		
+		#if (lime_cffi && lime_harfbuzz && !macro)
+		return NativeCFFI.lime_hb_buffer_allocation_successful (this);
+		#else
+		return false;
+		#end
+		
+	}
 	
 	
 	private inline function get_contentType ():HBBufferContentType {
