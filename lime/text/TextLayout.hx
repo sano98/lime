@@ -5,6 +5,12 @@ import haxe.io.Bytes;
 import lime._backend.native.NativeCFFI;
 import lime.math.Vector2;
 import lime.system.System;
+import lime.text.harfbuzz.HBBuffer;
+import lime.text.harfbuzz.HBDirection;
+import lime.text.harfbuzz.HBFTFont;
+import lime.text.harfbuzz.HBLanguage;
+import lime.text.harfbuzz.HBScript;
+import lime.text.harfbuzz.HB;
 
 #if !lime_debug
 @:fileXml('tags="haxe,release"')
@@ -29,9 +35,10 @@ class TextLayout {
 	
 	private var __dirty:Bool;
 	
-	@:noCompletion private var __buffer:Bytes;
+	@:noCompletion private var __buffer:HBBuffer;
+	//@:noCompletion private var __buffer:Bytes;
 	@:noCompletion private var __direction:TextDirection;
-	@:noCompletion private var __handle:Dynamic;
+	//@:noCompletion private var __handle:Dynamic;
 	@:noCompletion private var __language:String;
 	@:noCompletion private var __script:TextScript;
 	
@@ -41,6 +48,7 @@ class TextLayout {
 		this.text = text;
 		this.font = font;
 		this.size = size;
+		
 		__direction = direction;
 		__script = script;
 		__language = language;
@@ -48,9 +56,15 @@ class TextLayout {
 		positions = [];
 		__dirty = true;
 		
-		#if (lime_cffi && !macro)
-		__handle = NativeCFFI.lime_text_layout_create (__direction, __script, __language);
-		#end
+		__buffer = new HBBuffer ();
+		__buffer.direction = HBDirection.LTR;
+		__buffer.script = HBScript.INVALID;
+		__buffer.language = new HBLanguage ("en");
+		
+		//#if (lime_cffi && !macro)
+		//__handle = NativeCFFI.lime_text_layout_create (__direction, __script, __language);
+		//#end
+		
 	}
 	
 	
@@ -60,36 +74,39 @@ class TextLayout {
 		
 		#if (lime_cffi && !macro)
 		
-		if (__handle != null && text != null && text != "" && font != null && font.src != null) {
+		if (__buffer != null && text != null && text != "" && font != null && font.src != null) {
 			
-			if (__buffer == null) {
+			var hbFont;
+			
+			if (font.__hbFont == null) {
 				
-				__buffer = Bytes.alloc (1);
-				//__buffer.endian = (System.endianness == BIG_ENDIAN ? "bigEndian" : "littleEndian");
+				@:privateAccess font.__setSize (size);
+				font.__hbFont = new HBFTFont (font);
 				
 			}
 			
-			var data = NativeCFFI.lime_text_layout_position (__handle, font.src, size, text, #if cs null #else __buffer #end);
-			var position = 0;
+			hbFont = font.__hbFont;
+			//hbFont.size = size;
 			
-			if (__buffer.length > 4) {
+			__buffer.length = 0;
+			__buffer.addUTF8 (text, 0, text.length);
+			
+			HB.shape (hbFont, __buffer);
+			
+			var glyphInfo = __buffer.getGlyphInfo ();
+			var glyphPositions = __buffer.getGlyphPositions ();
+			
+			var info, position;
+			
+			for (i in 0...glyphInfo.length) {
 				
-				var count = __buffer.getInt32 (position); position += 4;
-				var index, advanceX, advanceY, offsetX, offsetY;
+				info = glyphInfo[i];
+				position = glyphPositions[i];
 				
-				for (i in 0...count) {
-					
-					index = __buffer.getInt32 (position); position += 4;
-					advanceX = __buffer.getFloat (position); position += 4;
-					advanceY = __buffer.getFloat (position); position += 4;
-					offsetX = __buffer.getFloat (position); position += 4;
-					offsetY = __buffer.getFloat (position); position += 4;
-					
-					positions.push (new GlyphPosition (index, new Vector2 (advanceX, advanceY), new Vector2 (offsetX, offsetY)));
-					
-				}
+				positions.push (new GlyphPosition (info.codepoint, new Vector2 (position.xAdvance / 64, position.yAdvance / 64), new Vector2 (position.xOffset / 64, position.yOffset / 64)));
 				
 			}
+			
 		}
 		
 		#end
@@ -131,9 +148,9 @@ class TextLayout {
 		
 		__direction = value;
 		
-		#if (lime_cffi && !macro)
-		NativeCFFI.lime_text_layout_set_direction (__handle, value);
-		#end
+		//#if (lime_cffi && !macro)
+		//NativeCFFI.lime_text_layout_set_direction (__handle, value);
+		//#end
 		
 		__dirty = true;
 		
@@ -181,9 +198,9 @@ class TextLayout {
 		
 		__language = value;
 		
-		#if (lime_cffi && !macro)
-		NativeCFFI.lime_text_layout_set_language (__handle, value);
-		#end
+		//#if (lime_cffi && !macro)
+		//NativeCFFI.lime_text_layout_set_language (__handle, value);
+		//#end
 		
 		__dirty = true;
 		
@@ -205,9 +222,9 @@ class TextLayout {
 		
 		__script = value;
 		
-		#if (lime_cffi && !macro)
-		NativeCFFI.lime_text_layout_set_script (__handle, value);
-		#end
+		//#if (lime_cffi && !macro)
+		//NativeCFFI.lime_text_layout_set_script (__handle, value);
+		//#end
 		
 		__dirty = true;
 		

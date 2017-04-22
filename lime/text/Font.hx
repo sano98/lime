@@ -23,6 +23,10 @@ import js.Browser;
 import haxe.io.Path;
 #end
 
+#if lime_harfbuzz
+import lime.text.harfbuzz.HBFont;
+#end
+
 #if !lime_debug
 @:fileXml('tags="haxe,release"')
 @:noDebug
@@ -52,6 +56,9 @@ class Font {
 	@:noCompletion private var __fontPath:String;
 	#if lime_cffi
 	@:noCompletion private var __fontPathWithoutDirectory:String;
+	#end
+	#if lime_harfbuzz
+	@:noCompletion private var __hbFont:HBFont;
 	#end
 	
 	

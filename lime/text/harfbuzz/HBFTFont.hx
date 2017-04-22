@@ -18,7 +18,7 @@ abstract HBFTFont(HBFont) to HBFont from CFFIPointer to CFFIPointer {
 	public function new (font:Font) {
 		
 		#if (lime_cffi && lime_harfbuzz && !macro)
-		this = NativeCFFI.lime_hb_ft_font_create_referenced (font);
+		this = NativeCFFI.lime_hb_ft_font_create_referenced (font.src);
 		#else
 		this = null;
 		#end

@@ -1,12 +1,12 @@
 #include <hx/CFFIPrime.h>
 #include <math/Vector2.h>
 #include <system/CFFIPointer.h>
-#include <text/Font.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include <hb.h>
 #include <hb-ft.h>
 #include <map>
+#include <text/Font.h>
 
 
 namespace lime {
@@ -161,18 +161,24 @@ namespace lime {
 	
 	value lime_hb_buffer_get_glyph_infos (value buffer) {
 		
-		unsigned int length = 0;
-		hb_glyph_info_t* info = hb_buffer_get_glyph_infos ((hb_buffer_t*)val_data (buffer), &length);
-		return CFFIPointer (info);
+		// TODO: Write into byte buffer instead array?
+		
+		value result = alloc_array (0);
+		return result;
+		//unsigned int length = 0;
+		//hb_glyph_info_t* info = hb_buffer_get_glyph_infos ((hb_buffer_t*)val_data (buffer), &length);
+		//return CFFIPointer (info);
 		
 	}
 	
 	
 	value lime_hb_buffer_get_glyph_positions (value buffer) {
 		
-		unsigned int length = 0;
-		hb_glyph_position_t* positions = hb_buffer_get_glyph_positions ((hb_buffer_t*)val_data (buffer), &length);
-		return CFFIPointer (positions);
+		value result = alloc_array (0);
+		return result;
+		//unsigned int length = 0;
+		//hb_glyph_position_t* positions = hb_buffer_get_glyph_positions ((hb_buffer_t*)val_data (buffer), &length);
+		//return CFFIPointer (positions);
 		
 	}
 	
