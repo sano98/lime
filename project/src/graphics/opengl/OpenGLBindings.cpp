@@ -2723,6 +2723,19 @@ namespace lime {
 			
 			#endif
 			
+			#ifdef NATIVE_TOOLKIT_SDL_ANGLE
+			
+			OpenGLBindings::eglHandle = LoadLibrary (L"libegl.dll");
+			
+			if (!OpenGLBindings::handle) {
+				
+				result = false;
+				return result;
+				
+			}
+			
+			#endif
+			
 			#ifdef NEED_EXTENSIONS
 			#define GET_EXTENSION
 			#include "OpenGLExtensions.h"
